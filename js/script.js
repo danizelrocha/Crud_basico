@@ -4,6 +4,11 @@ C-reate
 R-ead
 U-pdate
 D-elete
+
+Linguagem pura:
+- Criar variáveis
+- Sincronizar o conteúdo das variáveis com o HTML
+- Atualizar variáveis
  
 Too the List
 
