@@ -1,17 +1,25 @@
-console.log('Olá pessoas!');
+/* 
+---------O que é um CRUD--------
+C-reate
+R-ead
+U-pdate
+D-elete
+ */
+
+console.log('Olá mundo!');
 console.log('#ConstruindoCRUDS');
 
 /* [CRUD] JavaScript BÁSICO */ 
 const miniTwitter = {
     usuarios: [
         {
-            username: 'omariosouto',
+            username: 'odanielrocha',
         }
     ],
     posts: [
         {
             id: 1,
-            owner: 'omariosouto',
+            owner: 'odanielrocha',
             content: 'Meu primeiro tweet'
         }
     ],
@@ -24,8 +32,8 @@ function criaPost(dados) {
         content: dados.content
     });
 }
-criaPost({ owner: 'omariosouto', content: 'Segundo tweet' }); 
-criaPost({ owner: 'omariosouto', content: 'Terceiro tweet' }); 
+criaPost({ owner: 'odanielrocha', content: 'Segundo tweet' }); 
+criaPost({ owner: 'odanielrocha', content: 'Terceiro tweet' }); 
 /*console.log(miniTwitter.posts)*/
 
 /* READ*/
