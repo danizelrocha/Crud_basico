@@ -16,6 +16,13 @@ const miniRedeSocial = {
             content: 'Meu primeiro tweet'
         }
     ],
+    criaPost(dados) {
+        miniRedeSocial.posts.push({
+            id: miniRedeSocial.posts.length + 1,
+            owner: dados.owner,
+            content: dados.content
+        });
+    }
 };
 
 
