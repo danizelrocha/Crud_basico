@@ -25,6 +25,9 @@ const miniRedeSocial = {
     }
 };
 
+miniRedeSocial.criaPost({ owner: 'odanielrocha', content: 'Segundo tweet' }); 
+console.log(miniRedeSocial.posts);
+
 
 /* còdigo de Front End: web */
 const $meuForm = document.querySelector('form');
