@@ -10,21 +10,22 @@ const miniRedeSocial = {
     ],
     posts: [
         {
-            id: 1,
+            id: Date.now(),
             owner: 'odanielrocha',
             content: 'Meu primeiro tweet'
         }
-    ],
+    ], 
     readPosts() {
-        miniRedeSocial.posts.forEach(({owner, content})=>{
-        miniRedeSocial.criaPost({ owner: owner, content: content}, true); 
+        miniRedeSocial.posts.forEach(({ id, owner, content})=>{
+        miniRedeSocial.criaPost({ id, owner: owner, content: content}, true); 
         })
     },
     criaPost(dados, htmlOnly = false) {
+        const idInternoAqui = Date.now();
         if(!htmlOnly){
             /*Cria Post na Memória (Array / Objeto)*/
             miniRedeSocial.posts.push({
-              id: miniRedeSocial.posts.length + 1,
+              id: dados.id || idInternoAqui,
               owner: dados.owner,
              content: dados.content
             });
@@ -32,11 +33,18 @@ const miniRedeSocial = {
         /*Cria Post no Html */
         const $ListaDePosts = document.querySelector('.ListaDePosts');
         $ListaDePosts.insertAdjacentHTML('afterbegin',`
-            <li>
-              <button>Delete</button>
+            <li data-id="${idInternoAqui}">
+              <button class='btn-delete'>Delete</button>
               ${dados.content}
             </li>
         `);
+    },
+    apagaPost(id) {
+        const listaDePostsAtualizada =  miniRedeSocial.posts.filter((postAtual) => {
+            return postAtual.id !== Number(id);
+        })
+        console.log(listaDePostsAtualizada);
+        miniRedeSocial.posts = listaDePostsAtualizada;
     }
 };
 /* còdigo de Front End: web */
@@ -55,7 +63,22 @@ $meuForm.addEventListener('submit', function criaPostController(infosDoEvento) {
     $campoCriaPost.value ='';
 })
 
-/* CRUD: DELETE*/
+/* CRUD: [DELETE]*/
 document.querySelector('.ListaDePosts').addEventListener('click', function (infosDoEvento){
-      console.log('Houve um click', infosDoEvento.target);
-    })
+    console.log('Houve um click', );
+    const elementoAtual = infosDoEvento.target;
+    const isBtnDeleteClick = infosDoEvento.target.classList.contains('btn-delete')
+    if(isBtnDeleteClick) {
+        console.log('Clicou no botão apagar',);
+        const id = elementoAtual.parentNode.getAttribute('data-id');
+
+        /*MANIPULA O LADO DO - ServeceSide /Banco de dados / Arquivos / Fonte! */
+        miniRedeSocial.apagaPost(id);
+
+        /* MANIPULA A - View / Ouput / ...*/
+        elementoAtual.parentNode.remove(); 
+
+
+        console.log(miniRedeSocial.posts);
+    }
+})
