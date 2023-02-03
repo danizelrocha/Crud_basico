@@ -27,7 +27,7 @@ const miniRedeSocial = {
             miniRedeSocial.posts.push({
               id: dados.id || idInternoAqui,
               owner: dados.owner,
-             content: dados.content
+              content: dados.content
             });
         }
         /*Cria Post no Html */
